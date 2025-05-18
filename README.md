@@ -101,5 +101,5 @@ This hybrid model achieved the best results in terms of accuracy and robustness.
 - MediaPipe detects pose → angles are extracted & smoothed → 120-frame sequence is built → CNN-LSTM predicts the exercise.
 - The predicted label is shown on-screen.
 - A **cooldown timer** ensures a pause between predictions for user reset.
-![LSTM Architecture](Images/Screenshot 2025-05-18 165059.png)
+![LSTM Architecture](Images/classification_example.png)
 ---
