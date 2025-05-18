@@ -75,5 +75,5 @@ Improved version with a 1D Convolutional layer before the LSTM (using al feature
   - ReLU activation
   - LSTM: input size = 64, hidden size = 64, 2 layers, dropout = 0.3
   - Fully connected layer: 64 → 5 classes
-![LSTM Architecture](Images/LSTM_CNN_classificationdrawio.png)
+![LSTM Architecture](Images/LSTM_CNN_classificationdrawio_.png)
 This hybrid model achieved the best results in terms of accuracy and robustness.
