@@ -77,3 +77,29 @@ Improved version with a 1D Convolutional layer before the LSTM (using al feature
   - Fully connected layer: 64 → 5 classes
 ![LSTM Architecture](Images/LSTM_CNN_classificationdrawio_.png)
 This hybrid model achieved the best results in terms of accuracy and robustness.
+
+
+---
+
+## 🧪 Results
+
+| Model                     | Accuracy | F1 Score | AUC   |
+|--------------------------|----------|----------|-------|
+| Random Forest (All)      | 0.951    | 0.943    | 0.925 |
+| Random Forest (No Ground)| 0.963    | 0.957    | 0.942 |
+| LSTM (No Ground)         | 0.981    | 0.977    | 0.960 |
+| **CNN + LSTM (All)**     | **0.995**| **0.983**| **0.960** |
+
+- CNN-LSTM achieved the best performance by combining spatial and temporal modeling.
+- Removing ground angles slightly reduced model performance.
+
+---
+
+## 🎥 Real-Time Classification
+
+- Once the model is trained, it is deployed in a live webcam application.
+- MediaPipe detects pose → angles are extracted & smoothed → 120-frame sequence is built → CNN-LSTM predicts the exercise.
+- The predicted label is shown on-screen.
+- A **cooldown timer** ensures a pause between predictions for user reset.
+![LSTM Architecture](Images/LSTM_CNN_classificationdrawio_.png)
+---
