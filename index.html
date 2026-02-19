@@ -746,7 +746,6 @@
         <li><a href="#abstract">Abstract</a></li>
         <li><a href="#method">Method</a></li>
         <li><a href="#results">Results</a></li>
-        <li><a href="#bibtex">BibTeX</a></li>
       </ul>
     </div>
   </nav>
@@ -759,29 +758,14 @@
   <!-- ====== HERO ====== -->
   <section class="hero is-dark-hero">
     <div class="container text-center">
-      <div class="animate-fade-up">
-        <div class="institution-tag">
-          <span>🎓</span> Ben Gurion University of the Negev · Computer Science
-        </div>
-      </div>
-
-      <h1 class="publication-title animate-fade-up delay-1" style="margin-top: 28px;">
+      <h1 class="publication-title animate-fade-up" style="margin-top: 0;">
         <span class="title-accent">RTEC</span>: Real-Time Exercise<br>Classification
       </h1>
 
       <div class="publication-authors animate-fade-up delay-2" style="margin-top: 20px;">
         <span class="author-block">
-          <a href="https://github.com/zivfenig" target="_blank">Ziv Fenigstein</a><sup>*</sup>,
+          <a href="https://github.com/zivfenig" target="_blank">Ziv Fenigstein</a>
         </span>
-        <span class="author-block">
-          <a href="#" target="_blank">Yarden Tzaraf</a><sup>*</sup>,
-        </span>
-        <span class="author-block">
-          <a href="#" target="_blank">Ruby Chocron</a><sup>*</sup>
-        </span>
-        <div style="margin-top: 8px; font-size: 0.82rem; color: var(--text-muted);">
-          <sup>*</sup> Equal Contribution
-        </div>
       </div>
 
       <div class="publication-links animate-fade-up delay-3">
@@ -1170,40 +1154,12 @@
     </div>
   </section>
 
-  <!-- ====== BIBTEX ====== -->
-  <section class="rtec-section pipeline-section" id="bibtex">
-    <div class="container">
-      <div class="section-label">Citation</div>
-      <h2 class="section-title">BibTeX</h2>
-      <div class="section-divider"></div>
-
-      <div class="bibtex-wrapper">
-        <div class="bibtex-header">
-          <span>bibtex</span>
-          <button class="copy-btn" id="copyBibBtn" onclick="copyBib()">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-            Copy
-          </button>
-        </div>
-        <pre class="bibtex-code" id="bibtex-text">@misc{fenigstein2024rtec,
-  title     = {RTEC: Real-Time Exercise Classification using CNN-LSTM and MediaPipe Pose Estimation},
-  author    = {Fenigstein, Ziv and Tzaraf, Yarden and Chocron, Ruby},
-  year      = {2024},
-  institution = {Ben Gurion University of the Negev},
-  url       = {https://github.com/zivfenig/RTEC-Real-Time-Exercise-Classification},
-  note      = {Computer Science Course Project}
-}</pre>
-      </div>
-    </div>
-  </section>
-
   <!-- ====== FOOTER ====== -->
   <footer class="rtec-footer">
     <div class="container">
       <p>
-        RTEC · Ben Gurion University of the Negev · 2024
-      </p>
-      <p style="margin-top: 8px;">
+        <a href="mailto:zivfn3@gmail.com">zivfn3@gmail.com</a>
+        &nbsp;·&nbsp;
         <a href="https://github.com/zivfenig/RTEC-Real-Time-Exercise-Classification" target="_blank">GitHub Repository</a>
         &nbsp;·&nbsp;
         <a href="https://www.kaggle.com/datasets/mrigaankjaswal/exercise-detection-dataset" target="_blank">Dataset</a>
@@ -1222,22 +1178,6 @@
       scrollBtn.classList.toggle('visible', window.scrollY > 400);
     });
     scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-
-    // Copy BibTeX
-    function copyBib() {
-      const text = document.getElementById('bibtex-text').textContent;
-      navigator.clipboard.writeText(text).then(() => {
-        const btn = document.getElementById('copyBibBtn');
-        btn.classList.add('copied');
-        btn.querySelector('svg').style.display = 'none';
-        btn.childNodes[btn.childNodes.length - 1].textContent = ' Copied!';
-        setTimeout(() => {
-          btn.classList.remove('copied');
-          btn.querySelector('svg').style.display = '';
-          btn.childNodes[btn.childNodes.length - 1].textContent = ' Copy';
-        }, 2000);
-      });
-    }
   </script>
 
 </body>
