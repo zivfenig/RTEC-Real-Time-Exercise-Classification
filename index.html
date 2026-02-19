@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <!-- Primary Meta Tags -->
+  <meta name="RTEC" content="Real Time Exercise Classification - Ziv Fenigstein, Yarden Tzaraf, Ruby Chocron">
+  <meta name="description" content="RTEC: A real-time physical exercise classification system using computer vision, MediaPipe pose estimation, and a CNN-LSTM deep learning model to classify exercises via webcam.">
+  <meta name="keywords" content="Computer Vision, MediaPipe, CNN-LSTM, Exercise Classification, Pose Estimation, Deep Learning, Real-Time, Ben Gurion University">
+  <meta name="author" content="Ziv Fenigstein, Yarden Tzaraf, Ruby Chocron">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="English">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Ben Gurion University">
+  <meta property="og:title" content="RTEC - Real Time Exercise Classification">
+  <meta property="og:description" content="A real-time physical exercise classification system using computer vision, MediaPipe pose estimation, and a CNN-LSTM deep learning model achieving 99.5% accuracy.">
+  <meta property="og:url" content="https://zivfenig.github.io/RTEC-Real-Time-Exercise-Classification">
+  <meta property="og:image" content="https://zivfenig.github.io/RTEC-Real-Time-Exercise-Classification/static/images/social_preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="RTEC - Real Time Exercise Classification Research Preview">
+  <meta property="article:published_time" content="2024-01-01T00:00:00.000Z">
+  <meta property="article:author" content="Ziv Fenigstein">
+  <meta property="article:section" content="Research">
+  <meta property="article:tag" content="Computer Vision">
+  <meta property="article:tag" content="Exercise Classification">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="RTEC - Real Time Exercise Classification">
+  <meta name="twitter:description" content="A real-time physical exercise classification system using computer vision, MediaPipe pose estimation, and a CNN-LSTM model achieving 99.5% accuracy.">
+  <meta name="twitter:image" content="https://zivfenig.github.io/RTEC-Real-Time-Exercise-Classification/static/images/social_preview.png">
+  <meta name="twitter:image:alt" content="RTEC - Real Time Exercise Classification">
+
+  <!-- Academic/Research Specific -->
+  <meta name="citation_title" content="RTEC: Real-Time Exercise Classification using CNN-LSTM and MediaPipe Pose Estimation">
+  <meta name="citation_author" content="Fenigstein, Ziv">
+  <meta name="citation_author" content="Tzaraf, Yarden">
+  <meta name="citation_author" content="Chocron, Ruby">
+  <meta name="citation_publication_date" content="2024">
+  <meta name="citation_conference_title" content="Ben Gurion University – Computer Science">
+  
+  <!-- Additional SEO -->
+  <meta name="theme-color" content="#f5f0e8">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://ajax.googleapis.com">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+  <title>RTEC – Real Time Exercise Classification | Fenigstein, Tzaraf, Chocron</title>
+  
+  <!-- Critical CSS -->
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  
+  <!-- Non-critical CSS -->
+  <link rel="preload" href="static/css/bulma-carousel.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="static/css/bulma-slider.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="static/css/fontawesome.all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  
+  <noscript>
+    <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  </noscript>
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- JS -->
+  <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script defer src="static/js/bulma-carousel.min.js"></script>
+  <script defer src="static/js/bulma-slider.min.js"></script>
+  <script defer src="static/js/index.js"></script>
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "RTEC: Real-Time Exercise Classification using CNN-LSTM and MediaPipe Pose Estimation",
+    "description": "A real-time physical exercise classification system using computer vision, MediaPipe pose estimation, and a CNN-LSTM deep learning model achieving 99.5% accuracy.",
+    "author": [
+      {"@type": "Person", "name": "Ziv Fenigstein", "affiliation": {"@type": "Organization", "name": "Ben Gurion University"}},
+      {"@type": "Person", "name": "Yarden Tzaraf", "affiliation": {"@type": "Organization", "name": "Ben Gurion University"}},
+      {"@type": "Person", "name": "Ruby Chocron", "affiliation": {"@type": "Organization", "name": "Ben Gurion University"}}
+    ],
+    "datePublished": "2024-01-01",
+    "publisher": {"@type": "Organization", "name": "Ben Gurion University"},
+    "url": "https://zivfenig.github.io/RTEC-Real-Time-Exercise-Classification",
+    "keywords": ["Computer Vision", "MediaPipe", "CNN-LSTM", "Exercise Classification", "Pose Estimation", "Deep Learning"],
+    "abstract": "This project builds a real-time physical exercise classification system using computer vision, pose estimation, and deep learning. It captures a user's movements through a webcam, extracts key body joint angles using MediaPipe, and feeds a sequence of these angles into a trained CNN-LSTM model to classify the performed exercise with 99.5% accuracy.",
+    "isAccessibleForFree": true
+  }
+  </script>
+
+  <style>
+    /* ===== CSS VARIABLES ===== */
+    :root {
+      --bg: #faf8f4;
+      --bg-warm: #f5f0e8;
+      --bg-card: #ffffff;
+      --bg-card-hover: #fdf9f4;
+      --accent: #e85d2f;        /* burnt orange — sport energy */
+      --accent2: #1d6fe0;       /* electric blue */
+      --accent3: #16a34a;       /* green success */
+      --accent-light: #fef3ed;
+      --accent2-light: #eff6ff;
+      --text-primary: #1a1208;
+      --text-secondary: #5c5142;
+      --text-muted: #9c8d7e;
+      --border: rgba(26,18,8,0.09);
+      --border-strong: rgba(26,18,8,0.16);
+      --radius: 16px;
+      --font-display: 'Fraunces', serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      font-weight: 400;
+      line-height: 1.7;
+      margin: 0;
+      overflow-x: hidden;
+    }
+
+    /* ===== GRAIN TEXTURE ===== */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ===== HERO ===== */
+    .hero.is-dark-hero {
+      background: var(--bg-warm);
+      padding: 80px 0 60px;
+      position: relative;
+      border-bottom: 1px solid var(--border-strong);
+    }
+
+    .hero.is-dark-hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background:
+        radial-gradient(ellipse 700px 400px at 80% 20%, rgba(232,93,47,0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 500px 300px at 15% 70%, rgba(29,111,224,0.07) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .publication-title {
+      font-family: var(--font-display) !important;
+      font-weight: 900 !important;
+      font-size: clamp(2.2rem, 5vw, 3.8rem) !important;
+      line-height: 1.1 !important;
+      color: var(--text-primary) !important;
+      letter-spacing: -0.03em;
+    }
+
+    .title-accent {
+      color: var(--accent);
+      font-style: italic;
+    }
+
+    .publication-authors {
+      margin-top: 1.2rem;
+    }
+
+    .author-block {
+      font-family: var(--font-body);
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+    }
+
+    .author-block a {
+      color: var(--accent2) !important;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+    .author-block a:hover { color: var(--text-primary) !important; text-decoration: underline; }
+
+    .institution-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-strong);
+      border-radius: 100px;
+      padding: 6px 18px;
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      margin-top: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    /* ===== LINK BUTTONS ===== */
+    .publication-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 1.8rem;
+    }
+
+    .pub-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 24px;
+      border-radius: 100px;
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 0.88rem;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .pub-btn-primary {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      box-shadow: 0 4px 16px rgba(232,93,47,0.3);
+    }
+    .pub-btn-primary:hover { background: #d44e22; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(232,93,47,0.4); }
+
+    .pub-btn-outline {
+      background: var(--bg-card);
+      color: var(--text-primary);
+      border: 1.5px solid var(--border-strong);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    }
+    .pub-btn-outline:hover { background: var(--bg-warm); transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.1); }
+
+    /* ===== SECTION STYLES ===== */
+    .rtec-section {
+      padding: 80px 0;
+      position: relative;
+    }
+
+    .section-label {
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.7rem, 3vw, 2.6rem);
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.15;
+    }
+
+    .section-divider {
+      width: 48px;
+      height: 3px;
+      background: var(--accent);
+      border-radius: 2px;
+      margin: 16px 0 32px;
+    }
+
+    /* ===== ABSTRACT ===== */
+    .abstract-section {
+      background: var(--bg-warm);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .abstract-text {
+      font-size: 1.06rem;
+      color: var(--text-secondary);
+      line-height: 1.9;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    /* ===== CARDS ===== */
+    .feature-card {
+      background: var(--bg-card);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      transition: all 0.25s ease;
+      height: 100%;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    .feature-card:hover {
+      background: #fff;
+      border-color: var(--accent);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(232,93,47,0.1);
+    }
+
+    .card-icon {
+      font-size: 1.8rem;
+      margin-bottom: 14px;
+      display: block;
+    }
+
+    .card-title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+
+    .card-text {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    /* ===== PIPELINE ===== */
+    .pipeline-section {
+      background: var(--bg-warm);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .pipeline-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .pipeline-step:last-child { border-bottom: none; }
+
+    .step-num {
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 0.9rem;
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(232,93,47,0.25);
+    }
+
+    .step-content h4 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+      font-size: 1rem;
+    }
+
+    .step-content p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin: 0;
+    }
+
+    /* ===== RESULTS TABLE ===== */
+    .results-table-wrapper {
+      overflow-x: auto;
+      border-radius: var(--radius);
+      border: 1.5px solid var(--border-strong);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    }
+
+    .results-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--font-body);
+      background: var(--bg-card);
+    }
+
+    .results-table thead tr {
+      background: var(--bg-warm);
+    }
+
+    .results-table th {
+      padding: 14px 20px;
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-align: left;
+      border-bottom: 1.5px solid var(--border-strong);
+    }
+
+    .results-table td {
+      padding: 14px 20px;
+      font-size: 0.93rem;
+      color: var(--text-secondary);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .results-table tr:last-child td { border-bottom: none; }
+
+    .results-table tr.best-row td {
+      color: var(--text-primary);
+      background: var(--accent-light);
+      font-weight: 500;
+    }
+
+    .results-table tr.best-row td:first-child {
+      border-left: 3px solid var(--accent);
+    }
+
+    .score-badge {
+      display: inline-block;
+      background: #f0fdf4;
+      color: var(--accent3);
+      border-radius: 6px;
+      padding: 2px 10px;
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 0.88rem;
+      border: 1px solid rgba(22,163,74,0.2);
+    }
+
+    .score-badge.best {
+      background: var(--accent-light);
+      color: var(--accent);
+      border-color: rgba(232,93,47,0.25);
+    }
+
+    /* ===== ARCHITECTURE IMAGES ===== */
+    .arch-image-wrapper {
+      background: var(--bg-card);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      padding: 24px;
+      text-align: center;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+    }
+
+    .arch-image-wrapper img {
+      max-width: 100%;
+      border-radius: 8px;
+    }
+
+    .arch-caption {
+      margin-top: 14px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    /* ===== EXERCISES GRID ===== */
+    .exercise-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent-light);
+      border: 1.5px solid rgba(232,93,47,0.2);
+      color: var(--accent);
+      border-radius: 100px;
+      padding: 6px 16px;
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 0.88rem;
+      margin: 4px;
+    }
+
+    /* ===== STAT CARDS ===== */
+    .stat-card {
+      background: var(--bg-card);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+    }
+
+    .stat-number {
+      font-family: var(--font-display);
+      font-size: 2.8rem;
+      font-weight: 900;
+      color: var(--accent);
+      line-height: 1.1;
+      font-style: italic;
+    }
+
+    .stat-label {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+      letter-spacing: 0.04em;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    /* ===== BIBTEX ===== */
+    .bibtex-wrapper {
+      background: var(--bg-card);
+      border: 1.5px solid var(--border-strong);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+    }
+
+    .bibtex-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 20px;
+      background: var(--bg-warm);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .bibtex-header span {
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .copy-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--bg-card);
+      border: 1.5px solid var(--border-strong);
+      color: var(--text-secondary);
+      border-radius: 8px;
+      padding: 6px 14px;
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .copy-btn:hover { background: var(--accent-light); color: var(--accent); border-color: var(--accent); }
+    .copy-btn.copied { color: var(--accent3); border-color: var(--accent3); background: #f0fdf4; }
+
+    .bibtex-code {
+      padding: 20px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.83rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      white-space: pre;
+      overflow-x: auto;
+      margin: 0;
+      background: #fdfcfb;
+    }
+
+    /* ===== SCROLL TO TOP ===== */
+    .scroll-to-top {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      width: 44px;
+      height: 44px;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 1000;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.3s;
+      box-shadow: 0 4px 16px rgba(232,93,47,0.35);
+    }
+    .scroll-to-top.visible { opacity: 1; transform: translateY(0); }
+    .scroll-to-top:hover { background: #d44e22; box-shadow: 0 8px 24px rgba(232,93,47,0.45); }
+
+    /* ===== FOOTER ===== */
+    .rtec-footer {
+      background: var(--bg-warm);
+      border-top: 1.5px solid var(--border-strong);
+      padding: 40px 0;
+      text-align: center;
+    }
+
+    .rtec-footer p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .rtec-footer a { color: var(--accent); text-decoration: none; font-weight: 600; }
+    .rtec-footer a:hover { text-decoration: underline; }
+
+    /* ===== VIDEO ===== */
+    .video-wrapper {
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1.5px solid var(--border);
+      background: var(--bg-warm);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    }
+
+    .video-wrapper video { width: 100%; display: block; }
+
+    /* ===== NAV ===== */
+    .rtec-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(250,248,244,0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-strong);
+      padding: 0 24px;
+    }
+
+    .rtec-nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+    }
+
+    .nav-brand {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-style: italic;
+      font-size: 1.2rem;
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links a {
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 0.82rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .publication-title { font-size: 1.9rem !important; }
+    }
+
+    /* ===== COLUMNS COMPAT ===== */
+    .columns { display: flex; flex-wrap: wrap; gap: 20px; }
+    .column { flex: 1; min-width: 240px; }
+    .column.is-full { flex: 0 0 100%; }
+    .column.is-one-third { flex: 0 0 calc(33.33% - 14px); }
+    .column.is-two-thirds { flex: 0 0 calc(66.67% - 14px); }
+
+    @media (max-width: 768px) {
+      .column.is-one-third, .column.is-two-thirds { flex: 0 0 100%; }
+    }
+
+    /* ===== UTILITY ===== */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    .text-center { text-align: center; }
+    .mb-2 { margin-bottom: 8px; }
+    .mb-4 { margin-bottom: 16px; }
+    .mb-6 { margin-bottom: 24px; }
+    .mt-4 { margin-top: 16px; }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .animate-fade-up {
+      animation: fadeUp 0.7s ease both;
+    }
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+    .delay-4 { animation-delay: 0.4s; }
+
+    /* ===== LANDMARK TAG ===== */
+    .landmark-tag {
+      background: var(--accent2-light);
+      color: var(--accent2);
+      border: 1px solid rgba(29,111,224,0.2);
+      border-radius: 8px;
+      padding: 5px 14px;
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 0.85rem;
+    }
+
+    /* ===== STATS BAR ===== */
+    .stats-bar {
+      background: var(--bg-card);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="rtec-nav">
+    <div class="rtec-nav-inner">
+      <a class="nav-brand" href="#">RTEC</a>
+      <ul class="nav-links">
+        <li><a href="#abstract">Abstract</a></li>
+        <li><a href="#method">Method</a></li>
+        <li><a href="#results">Results</a></li>
+        <li><a href="#bibtex">BibTeX</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- SCROLL TO TOP -->
+  <button class="scroll-to-top" id="scrollTopBtn" aria-label="Scroll to top" title="Back to top">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6-6-6 6"/></svg>
+  </button>
+
+  <!-- ====== HERO ====== -->
+  <section class="hero is-dark-hero">
+    <div class="container text-center">
+      <div class="animate-fade-up">
+        <div class="institution-tag">
+          <span>🎓</span> Ben Gurion University of the Negev · Computer Science
+        </div>
+      </div>
+
+      <h1 class="publication-title animate-fade-up delay-1" style="margin-top: 28px;">
+        <span class="title-accent">RTEC</span>: Real-Time Exercise<br>Classification
+      </h1>
+
+      <div class="publication-authors animate-fade-up delay-2" style="margin-top: 20px;">
+        <span class="author-block">
+          <a href="https://github.com/zivfenig" target="_blank">Ziv Fenigstein</a><sup>*</sup>,
+        </span>
+        <span class="author-block">
+          <a href="#" target="_blank">Yarden Tzaraf</a><sup>*</sup>,
+        </span>
+        <span class="author-block">
+          <a href="#" target="_blank">Ruby Chocron</a><sup>*</sup>
+        </span>
+        <div style="margin-top: 8px; font-size: 0.82rem; color: var(--text-muted);">
+          <sup>*</sup> Equal Contribution
+        </div>
+      </div>
+
+      <div class="publication-links animate-fade-up delay-3">
+        <a href="https://github.com/zivfenig/RTEC-Real-Time-Exercise-Classification" target="_blank" class="pub-btn pub-btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          Code
+        </a>
+        <a href="https://www.kaggle.com/datasets/mrigaankjaswal/exercise-detection-dataset" target="_blank" class="pub-btn pub-btn-outline">
+          📊 Dataset
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== STATS BAR ====== -->
+  <section class="stats-bar">
+    <div class="container">
+      <div class="columns" style="gap: 0; text-align: center;">
+        <div class="column" style="padding: 28px; border-right: 1px solid var(--border);">
+          <div class="stat-number">99.5%</div>
+          <div class="stat-label">CNN-LSTM Accuracy</div>
+        </div>
+        <div class="column" style="padding: 28px; border-right: 1px solid var(--border);">
+          <div class="stat-number">5</div>
+          <div class="stat-label">Exercise Classes</div>
+        </div>
+        <div class="column" style="padding: 28px; border-right: 1px solid var(--border);">
+          <div class="stat-number">10</div>
+          <div class="stat-label">Angle Features / Frame</div>
+        </div>
+        <div class="column" style="padding: 28px;">
+          <div class="stat-number">120</div>
+          <div class="stat-label">Frame Sequences</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== DEMO VIDEO ====== -->
+  <section class="rtec-section" id="demo" style="padding: 60px 0;">
+    <div class="container">
+      <div class="section-label">Demo</div>
+      <h2 class="section-title">See It in Action</h2>
+      <div class="section-divider"></div>
+
+      <div class="video-wrapper" style="max-width: 860px; margin: 0 auto;">
+        <video
+          id="demo-video"
+          controls
+          loop
+          muted
+          playsinline
+          preload="metadata"
+          poster="static/images/demo_poster.jpg"
+          style="width: 100%; display: block; background: #1a1208;"
+        >
+          <source src="static/videos/demo.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+      <p style="text-align: center; color: var(--text-muted); font-size: 0.88rem; margin-top: 16px; font-style: italic;">
+        Real-time exercise classification — MediaPipe pose skeleton + CNN-LSTM prediction displayed live via OpenCV.
+      </p>
+    </div>
+  </section>
+
+  <!-- ====== ABSTRACT ====== -->
+  <section class="rtec-section abstract-section" id="abstract">
+    <div class="container text-center">
+      <div class="section-label">Abstract</div>
+      <div class="section-divider" style="margin: 12px auto 32px;"></div>
+      <p class="abstract-text">
+        This project builds a <strong style="color: var(--text-primary);">real-time physical exercise classification system</strong> using computer vision, pose estimation, and deep learning. It captures a user's movements through a webcam, extracts key body joint angles using <strong style="color: var(--accent2);">MediaPipe</strong>, and feeds a sequence of these angles into a trained <strong style="color: var(--accent2);">CNN-LSTM model</strong> to classify the performed exercise.
+        <br><br>
+        We compare Random Forest baselines with LSTM and CNN-LSTM deep learning approaches, demonstrating that the CNN-LSTM hybrid — combining convolutional local-pattern extraction with LSTM temporal modeling — achieves <strong style="color: var(--accent3);">99.5% accuracy</strong> and an F1 score of 0.983 across five exercise classes. The system provides live feedback via OpenCV and is designed for fitness tracking, rehabilitation, and sport-tech applications.
+      </p>
+
+      <div style="margin-top: 32px; display: flex; flex-wrap: wrap; justify-content: center; gap: 0;">
+        <span class="exercise-chip">🏋️ Push Ups</span>
+        <span class="exercise-chip">🤸 Pull Ups</span>
+        <span class="exercise-chip">🦵 Squats</span>
+        <span class="exercise-chip">⭐ Jumping Jacks</span>
+        <span class="exercise-chip">💪 Russian Twists</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== HOW IT WORKS ====== -->
+  <section class="rtec-section" id="method">
+    <div class="container">
+      <div class="section-label">Method</div>
+      <h2 class="section-title">How It Works</h2>
+      <div class="section-divider"></div>
+
+      <div class="columns" style="gap: 20px;">
+        <div class="column">
+          <div class="feature-card">
+            <span class="card-icon">📷</span>
+            <div class="card-title">Webcam Input</div>
+            <p class="card-text">Live video is captured in real time from a standard webcam, no special hardware required.</p>
+          </div>
+        </div>
+        <div class="column">
+          <div class="feature-card">
+            <span class="card-icon">🦴</span>
+            <div class="card-title">Pose Estimation</div>
+            <p class="card-text">MediaPipe Pose detects 33 body landmarks per frame. We extract 7 key left-side landmarks: shoulder, elbow, wrist, hip, knee, ankle, and foot.</p>
+          </div>
+        </div>
+        <div class="column">
+          <div class="feature-card">
+            <span class="card-icon">📐</span>
+            <div class="card-title">Angle Extraction</div>
+            <p class="card-text">10 angles per frame are computed — 5 joint angles (e.g., elbow, knee) via 3-point geometry and 5 ground angles (torso orientation relative to horizontal).</p>
+          </div>
+        </div>
+        <div class="column">
+          <div class="feature-card">
+            <span class="card-icon">🧠</span>
+            <div class="card-title">CNN-LSTM Classification</div>
+            <p class="card-text">A 120-frame sliding window of angle features is fed into a CNN-LSTM model that captures both local spatial patterns and long-term temporal dependencies.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== PIPELINE ====== -->
+  <section class="rtec-section pipeline-section" style="padding: 60px 0;">
+    <div class="container">
+      <div class="columns" style="gap: 60px; align-items: flex-start;">
+        <div class="column">
+          <div class="section-label">Pipeline</div>
+          <h2 class="section-title">Step-by-Step</h2>
+          <div class="section-divider"></div>
+
+          <div class="pipeline-step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <h4>Capture Frame</h4>
+              <p>Webcam streams RGB frames to the system in real time.</p>
+            </div>
+          </div>
+          <div class="pipeline-step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <h4>MediaPipe Landmark Detection</h4>
+              <p>33 body landmarks are extracted per frame using MediaPipe Pose model.</p>
+            </div>
+          </div>
+          <div class="pipeline-step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <h4>Compute 10 Angle Features</h4>
+              <p>Joint angles and ground-relative orientation angles computed from landmark coordinates.</p>
+            </div>
+          </div>
+          <div class="pipeline-step">
+            <div class="step-num">4</div>
+            <div class="step-content">
+              <h4>Build 120-Frame Sequence</h4>
+              <p>Sliding window buffer accumulates 120 consecutive frames of angle data with smoothing.</p>
+            </div>
+          </div>
+          <div class="pipeline-step">
+            <div class="step-num">5</div>
+            <div class="step-content">
+              <h4>CNN-LSTM Inference</h4>
+              <p>Model predicts the exercise class. A cooldown timer separates consecutive predictions.</p>
+            </div>
+          </div>
+          <div class="pipeline-step">
+            <div class="step-num">6</div>
+            <div class="step-content">
+              <h4>Live Display</h4>
+              <p>Predicted label and skeleton overlay displayed on webcam feed via OpenCV.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="column">
+          <div class="section-label">Pose Detection</div>
+          <h2 class="section-title">MediaPipe Landmarks</h2>
+          <div class="section-divider"></div>
+
+          <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 24px;">
+            MediaPipe is Google's cross-platform ML framework for efficient on-device inference. For each frame, we extract only the 7 most informative left-side landmarks for exercise classification, reducing noise and computation.
+          </p>
+
+          <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px;">
+            <span class="landmark-tag">Left Shoulder</span>
+            <span class="landmark-tag">Left Elbow</span>
+            <span class="landmark-tag">Left Wrist</span>
+            <span class="landmark-tag">Left Hip</span>
+            <span class="landmark-tag">Left Knee</span>
+            <span class="landmark-tag">Left Ankle</span>
+            <span class="landmark-tag">Left Foot</span>
+          </div>
+
+          <div class="feature-card" style="margin-bottom: 16px;">
+            <div class="card-title">📐 5 Joint Angles</div>
+            <p class="card-text">Elbow, knee, hip, shoulder–hip, and hip–ankle angles computed via 3-point dot product geometry.</p>
+          </div>
+          <div class="feature-card">
+            <div class="card-title">🌐 5 Ground Angles</div>
+            <p class="card-text">Torso-to-horizontal, shin-to-horizontal, and similar orientation angles to capture body posture relative to gravity.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== ARCHITECTURES ====== -->
+  <section class="rtec-section" id="architectures">
+    <div class="container">
+      <div class="section-label">Models</div>
+      <h2 class="section-title">Architectures</h2>
+      <div class="section-divider"></div>
+
+      <div class="columns" style="gap: 24px;">
+        <div class="column">
+          <div class="arch-image-wrapper">
+            <img 
+              src="https://raw.githubusercontent.com/zivfenig/RTEC-Real-Time-Exercise-Classification/main/Images/LSTM_classificationdrawio.png"
+              alt="LSTM Architecture Diagram"
+              loading="lazy"
+            />
+            <div class="arch-caption">
+              <strong style="color: var(--text-secondary);">LSTM Model</strong> — 2-layer LSTM with hidden size 64, dropout 0.3, trained on joint angles only (no ground angles).
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="arch-image-wrapper">
+            <img 
+              src="https://raw.githubusercontent.com/zivfenig/RTEC-Real-Time-Exercise-Classification/main/Images/LSTM_CNN_classificationdrawio_.png"
+              alt="CNN-LSTM Architecture Diagram"
+              loading="lazy"
+            />
+            <div class="arch-caption">
+              <strong style="color: var(--accent);">CNN-LSTM Model (Best)</strong> — Conv1D (10→64 filters, kernel=5) + 2-layer LSTM + FC. Achieves 99.5% accuracy using all 10 angle features.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 24px;">
+        <div class="feature-card" style="display: flex; align-items: flex-start; gap: 20px;">
+          <div>
+            <div class="card-title">🌲 Random Forest Baselines</div>
+            <p class="card-text">
+              We also trained two Random Forest baselines — one using all 10 features (accuracy 95.1%) and one using only 5 joint angles without ground angles (accuracy 96.3%). These serve as strong classical ML baselines to compare against deep learning approaches.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== RESULTS ====== -->
+  <section class="rtec-section pipeline-section" id="results">
+    <div class="container">
+      <div class="section-label">Results</div>
+      <h2 class="section-title">Performance Comparison</h2>
+      <div class="section-divider"></div>
+
+      <div class="results-table-wrapper">
+        <table class="results-table">
+          <thead>
+            <tr>
+              <th>Model</th>
+              <th>Features</th>
+              <th>Accuracy</th>
+              <th>F1 Score</th>
+              <th>AUC</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Random Forest</td>
+              <td>All 10 angles</td>
+              <td><span class="score-badge">0.951</span></td>
+              <td><span class="score-badge">0.943</span></td>
+              <td><span class="score-badge">0.925</span></td>
+            </tr>
+            <tr>
+              <td>Random Forest</td>
+              <td>5 joint angles (no ground)</td>
+              <td><span class="score-badge">0.963</span></td>
+              <td><span class="score-badge">0.957</span></td>
+              <td><span class="score-badge">0.942</span></td>
+            </tr>
+            <tr>
+              <td>LSTM</td>
+              <td>5 joint angles (no ground)</td>
+              <td><span class="score-badge">0.981</span></td>
+              <td><span class="score-badge">0.977</span></td>
+              <td><span class="score-badge">0.960</span></td>
+            </tr>
+            <tr class="best-row">
+              <td>⭐ <strong>CNN + LSTM</strong></td>
+              <td>All 10 angles</td>
+              <td><span class="score-badge best">0.995</span></td>
+              <td><span class="score-badge best">0.983</span></td>
+              <td><span class="score-badge best">0.960</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="columns" style="margin-top: 24px; gap: 20px;">
+        <div class="column">
+          <div class="feature-card">
+            <span class="card-icon">🏆</span>
+            <div class="card-title">CNN-LSTM Wins</div>
+            <p class="card-text">Combining Conv1D local pattern extraction with LSTM temporal modeling outperforms all baselines, achieving 99.5% accuracy.</p>
+          </div>
+        </div>
+        <div class="column">
+          <div class="feature-card">
+            <span class="card-icon">🌐</span>
+            <div class="card-title">Ground Angles Matter</div>
+            <p class="card-text">Including ground-relative angles alongside joint angles improves CNN-LSTM performance, capturing body orientation relative to gravity.</p>
+          </div>
+        </div>
+        <div class="column">
+          <div class="feature-card">
+            <span class="card-icon">⚡</span>
+            <div class="card-title">Real-Time Ready</div>
+            <p class="card-text">The deployed system uses a cooldown timer between predictions, ensuring stable live classification from webcam input with OpenCV overlay.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Demo image from repo -->
+      <div class="arch-image-wrapper" style="margin-top: 28px;">
+        <img 
+          src="https://raw.githubusercontent.com/zivfenig/RTEC-Real-Time-Exercise-Classification/main/Images/classification_example.png"
+          alt="Real-time exercise classification demo screenshot"
+          loading="lazy"
+          style="max-width: 700px;"
+        />
+        <div class="arch-caption">
+          Live classification example — MediaPipe skeleton overlay with predicted exercise label displayed on-screen.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== DATASET ====== -->
+  <section class="rtec-section">
+    <div class="container">
+      <div class="section-label">Data</div>
+      <h2 class="section-title">Dataset & Training</h2>
+      <div class="section-divider"></div>
+
+      <div class="columns" style="gap: 24px;">
+        <div class="column is-two-thirds">
+          <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.8;">
+            We used the <a href="https://www.kaggle.com/datasets/mrigaankjaswal/exercise-detection-dataset" target="_blank" style="color: var(--accent2); font-weight: 600;">Exercise Detection Dataset from Kaggle</a>, which contains pose landmarks extracted with MediaPipe for 5 exercise classes. Each row includes body joint coordinates and an exercise label.
+          </p>
+          <br>
+          <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.8;">
+            From the raw landmarks, we computed <strong style="color: var(--text-primary);">10 angle features per frame</strong> and organized data into <strong style="color: var(--text-primary);">labeled sequences of 120 frames</strong> for model training. Smoothing was applied to reduce landmark jitter during real-time inference.
+          </p>
+        </div>
+        <div class="column">
+          <div class="stat-card">
+            <div class="stat-number">5</div>
+            <div class="stat-label">Exercise Classes</div>
+          </div>
+          <div class="stat-card" style="margin-top: 12px;">
+            <div class="stat-number">10</div>
+            <div class="stat-label">Features Per Frame</div>
+          </div>
+          <div class="stat-card" style="margin-top: 12px;">
+            <div class="stat-number">120</div>
+            <div class="stat-label">Frames Per Sequence</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== BIBTEX ====== -->
+  <section class="rtec-section pipeline-section" id="bibtex">
+    <div class="container">
+      <div class="section-label">Citation</div>
+      <h2 class="section-title">BibTeX</h2>
+      <div class="section-divider"></div>
+
+      <div class="bibtex-wrapper">
+        <div class="bibtex-header">
+          <span>bibtex</span>
+          <button class="copy-btn" id="copyBibBtn" onclick="copyBib()">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+            Copy
+          </button>
+        </div>
+        <pre class="bibtex-code" id="bibtex-text">@misc{fenigstein2024rtec,
+  title     = {RTEC: Real-Time Exercise Classification using CNN-LSTM and MediaPipe Pose Estimation},
+  author    = {Fenigstein, Ziv and Tzaraf, Yarden and Chocron, Ruby},
+  year      = {2024},
+  institution = {Ben Gurion University of the Negev},
+  url       = {https://github.com/zivfenig/RTEC-Real-Time-Exercise-Classification},
+  note      = {Computer Science Course Project}
+}</pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== FOOTER ====== -->
+  <footer class="rtec-footer">
+    <div class="container">
+      <p>
+        RTEC · Ben Gurion University of the Negev · 2024
+      </p>
+      <p style="margin-top: 8px;">
+        <a href="https://github.com/zivfenig/RTEC-Real-Time-Exercise-Classification" target="_blank">GitHub Repository</a>
+        &nbsp;·&nbsp;
+        <a href="https://www.kaggle.com/datasets/mrigaankjaswal/exercise-detection-dataset" target="_blank">Dataset</a>
+      </p>
+      <p style="margin-top: 16px; font-size: 0.78rem; color: var(--text-muted);">
+        Built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a>.
+        Licensed under <a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">CC BY-SA 4.0</a>.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll to top button
+    const scrollBtn = document.getElementById('scrollTopBtn');
+    window.addEventListener('scroll', () => {
+      scrollBtn.classList.toggle('visible', window.scrollY > 400);
+    });
+    scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    // Copy BibTeX
+    function copyBib() {
+      const text = document.getElementById('bibtex-text').textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.getElementById('copyBibBtn');
+        btn.classList.add('copied');
+        btn.querySelector('svg').style.display = 'none';
+        btn.childNodes[btn.childNodes.length - 1].textContent = ' Copied!';
+        setTimeout(() => {
+          btn.classList.remove('copied');
+          btn.querySelector('svg').style.display = '';
+          btn.childNodes[btn.childNodes.length - 1].textContent = ' Copy';
+        }, 2000);
+      });
+    }
+  </script>
+
+</body>
+</html>
